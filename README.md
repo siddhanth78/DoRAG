@@ -4,4 +4,5 @@
 - Make sure Ollama is installed on your system, and the Ollama server is running
 - Use command `ollama pull llama3` to install LLaMa 3 8B on your system
 - Minimum 8 GB RAM required
+- 16 GB or more RAM required for optimal performance
 - Run using command `python /path/to/rag_app/DoRAG.py`
