@@ -1,0 +1,5 @@
+- Document-specific RAG using Python and Langchain
+- Requires Ollama
+- Make sure Ollama is installed in your system and the server is runnung.
+- Use command "ollama pull llama3" to install LLaMa 3 8b on your system.
+- Run using command "python DoRAG.py"
