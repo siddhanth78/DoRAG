@@ -1,6 +1,6 @@
 - Document-specific RAG using Python and Langchain
 - Requires Ollama
-- Install required python modules using command "pip install -r requirements.txt"
+- Install required python modules using command "pip install -r /path/to/req_txt/requirements.txt"
 - Make sure Ollama is installed on your system, and the Ollama server is running
 - Use command "ollama pull llama3" to install LLaMa 3 8b on your system
-- Run using command "python DoRAG.py"
+- Run using command "python /path/to/rag_app/DoRAG.py"
