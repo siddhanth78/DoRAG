@@ -1,7 +1,5 @@
 langchain
 langchain-chroma
 langchain-community
-langchainhub
 langchain-huggingface
-datetime
 pypdf
