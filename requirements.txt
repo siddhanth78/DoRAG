@@ -3,3 +3,6 @@ langchain-chroma
 langchain-community
 langchain-huggingface
 pypdf
+pdf2image
+pillow
+pytesseract
