@@ -132,7 +132,7 @@ def main():
             print(user_question)
             
             print("\nAnswer:")
-            for result in rag_chain.invoke({"question": user_question, "history": list(conversation_history)}):
+            for result in rag_chain.stream({"question": user_question, "history": list(conversation_history)}):
                 print(result, end='', flush=True)
 
             conversation_history.append({"question": user_question, "answer": result})
