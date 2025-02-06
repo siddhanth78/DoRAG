@@ -88,7 +88,7 @@ def setup_rag_chain(retriever, system_prompt, question_prompt_template):
         ("human", question_prompt_template),
     ])
 
-    llm = Ollama(model='llama3')
+    llm = Ollama(model='deepseek-r1:8b')
 
     def format_docs(docs):
         return "\n\n".join(doc.page_content for doc in docs)
