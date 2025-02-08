@@ -2,7 +2,7 @@ import os
 import sys
 from collections import deque
 from langchain_chroma import Chroma
-from langchain_community.llms import Ollama
+from langchain_ollama import OllamaLLM
 from langchain_core.output_parsers import StrOutputParser
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -67,7 +67,31 @@ def setup_vectorstore(splits):
     return retriever
 
 def get_prompts():
-    system_prompt = """You are a flash card generation assistant. You will be provided some info, and your job is to make quality flash cards. Make sure that the questions aren't too obscure. Format the question and answer in a json format with no surrounding text or explanations. Make sure to make atleast 2 flash cards with a maximum of 5."""
+    system_prompt = """
+
+You are a flash card generation assistant. You will be provided some info, and your job is to make quality flash cards.
+Make sure to make atleast 2 flash cards with a maximum of 5.
+Make each flash card like an mcq (Multiple choice question) where there are 4 choice, out of which one of them is right.
+Make sure the options are related to the question. Feel free to come up with your own wrong options as long as the options pertain to the question.
+
+Make sure that the questions aren't too obscure. Format the question and answer in a custom format provided with no surrounding text or explanations.
+The JSON must contain the following fields:
+
+question: contains the question string.
+options: contains list of options labelled A, B, C, D
+answer: contains the right answer labelled with the right letter.
+explanation: contains a brief explanation of the right answer.
+
+Example flashcard structure:
+
+---
+question: "what does the USA stand for?",
+options: ["A. United States of Africa", "B. Union Services of Arabia", "C. United States of America", "D. Universal Services in Asia"],
+answer: "C",
+explanation: "The USA stands for United States of America."
+---
+
+"""
 
     question_prompt_template = """
 Current context and question:
@@ -84,7 +108,7 @@ def setup_rag_chain(retriever, system_prompt, question_prompt_template):
         ("human", question_prompt_template),
     ])
 
-    llm = Ollama(model='llama3.1:8b')
+    llm = OllamaLLM(model='llama3.1:8b')
 
     def format_docs(docs):
         return "\n\n".join(doc.page_content for doc in docs)
